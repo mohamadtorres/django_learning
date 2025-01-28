@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('', views.post_list),
     path('<int:year>/<int:month>/<int:day>/<str:slug>/', views.post_detail),
+    path('contact-us/', views.contact_us),
 ]

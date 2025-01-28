@@ -6,12 +6,11 @@ from django.http import HttpResponse as httpresponse, Http404
 
 def post_list(request):
     posts =  models.Post.objects.filter(status='published') #inja migim bebin hame
-    # context = {
-    #     'posts': posts
-    # }
+    context = {
+        'posts': posts
+    }
     print(posts)
-    return httpresponse("<h2>World") 
-
+    return render(request, 'post_list.html',context=context)
 
 # def post_detail(request,year,month, day, slug):
 #     try:
@@ -47,11 +46,13 @@ def post_detail(request,year,month, day, slug):
     context = {
         'post': post
     }
-    return httpresponse(f"{post.title}")
+    return render(request, 'post_detail.html', context=context)
 
 
 
-
+def contact_us(request):
+    # return httpresponse("Contact Us")
+    return render(request, 'contact_us.html')
 
 
 
