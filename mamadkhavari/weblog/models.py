@@ -24,7 +24,10 @@ class Post(models.Model):
     def __str__(self):
         return f"{self.title}"
     
-    
+    def get_absolute_url(self):
+        #it makes a url for each post
+        from django.urls import reverse
+        return reverse('post_detail', args=[self.created_data.year, self.created_data.strftime('%m'), self.created_data.strftime('%d'), self.slug])
 
 
 

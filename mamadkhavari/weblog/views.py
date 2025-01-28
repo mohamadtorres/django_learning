@@ -5,7 +5,8 @@ from django.http import HttpResponse as httpresponse, Http404
 #function base view ke ba def shoroo mishe
 
 def post_list(request):
-    posts =  models.Post.objects.filter(status='published') #inja migim bebin hame
+    #posts =  models.Post.objects.filter(status='published') #inja migim bebin hame
+    posts = models.Post.objects.all()  #inja migim bebin hame
     context = {
         'posts': posts
     }
