@@ -30,7 +30,17 @@ class Post(models.Model):
         return reverse('post_detail', args=[self.created_data.year, self.created_data.strftime('%m'), self.created_data.strftime('%d'), self.slug])
 
 
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    comment = models.TextField()
+    created_data = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
 
+
+    def __str__(self):
+        return f"Comment written by {self.name} on {self.post}"
 
 
 #hala model ro bayad migrate konim

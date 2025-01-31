@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from . import models
 from django.http import HttpResponse as httpresponse, Http404
+from django.core.paginator import Paginator
 # Create your views here.
 #function base view ke ba def shoroo mishe
 
 def post_list(request):
     #posts =  models.Post.objects.filter(status='published') #inja migim bebin hame
     posts = models.Post.objects.all()  #inja migim bebin hame
+    paginator = Paginator(posts, 3) # Show 2 contacts per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'posts': posts
+        'page_obj': page_obj
     }
     print(posts)
     return render(request, 'post_list.html',context=context)
